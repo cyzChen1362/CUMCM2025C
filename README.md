@@ -1,7 +1,7 @@
 # NIPT Optimal Timing & Fetal Abnormality Modeling (CUMCM 2025, Q-C)
 
 > 基于多因素风险评估模型的 NIPT 最优时点选择与胎儿异常判定（国赛C题）。数据处理、建模与可重复实验代码。  
-> 对应论文：NIPT 最优检测时点选择与异常判定的多因素模型与稳健性分析。:contentReference[oaicite:0]{index=0}
+> 对应论文：NIPT 最优检测时点选择与异常判定的多因素模型与稳健性分析。
 
 ## 🧭 Project Structure
 2025Modeling/
