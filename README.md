@@ -4,19 +4,23 @@
 > 对应论文：NIPT 最优检测时点选择与异常判定的多因素模型与稳健性分析。
 
 ## 🧭 Project Structure
-2025Modeling/
+2025Modeling/  
+├─ Original_Code/  
+│ ├─ Code_FromMATLAB/  
+│ ├─ Data_Processing/  
+│ ├─ Question_1/  
+│ ├─ Question_2/  
+│ ├─ Question_3/  
+│ └─ Question_4/  
+├─ NoteBook/   
+│ ├─ Question_1/  
+│ ├─ Question_2/  
+│ ├─ Question_3/  
+│ └─ Question_4/  
+│  
+├─ requirements.txt  
+└─ README.md  
 
-├─ Code_FromMATLAB/
-
-├─ Data_Processing/
-
-├─ Question_1/
-
-├─ Question_2/
-
-├─ Question_3/
-
-└─ Question_4/
 
 
 ## ✨ What’s inside
