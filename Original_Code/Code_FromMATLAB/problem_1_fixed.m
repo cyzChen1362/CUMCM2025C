@@ -1,7 +1,4 @@
 %% Y染色体浓度与孕妇孕周数、BMI关系分析
-% 作者：统计分析师
-% 日期：2024年
-% 目的：建立Y染色体浓度与孕周数、BMI的关系模型并检验显著性
 
 clear; clc; close all;
 
@@ -21,6 +18,8 @@ fprintf('数据样本数量: %d\n', n);
 fprintf('BMI数据长度: %d\n', length(BMI_data));
 fprintf('孕周数据长度: %d\n', length(gestational_weeks));
 fprintf('Y染色体浓度数据长度: %d\n', length(Y_chromosome_concentration));
+
+% ---------------------------------------------------------------- %
 
 %% 数据预处理和探索性分析
 
@@ -64,6 +63,8 @@ for i = 1:length(variables)
     fprintf('%s异常值数量: %d (%.1f%%)\n', var_names{i}, outliers, outliers/n*100);
 end
 
+
+
 %% 相关性分析
 fprintf('\n=== 相关性分析 ===\n');
 
@@ -85,6 +86,8 @@ for i = 1:length(var_labels)
     end
     fprintf('\n');
 end
+
+% ---------------------------------------------------------------- %
 
 % 显著性检验
 [R, P] = corrcoef([gestational_weeks, BMI_data, Y_chromosome_concentration]);
@@ -160,6 +163,8 @@ grid on;
 
 sgtitle('数据分布和相关性分析', 'FontSize', 16, 'FontWeight', 'bold');
 
+% ---------------------------------------------------------------- %
+
 % 相关性热图
 figure('Position', [100, 100, 600, 500]);
 imagesc(corr_matrix);
@@ -177,6 +182,8 @@ for i = 1:3
     end
 end
 
+% ---------------------------------------------------------------- %
+
 %% 模型构建和比较
 fprintf('\n=== 模型构建和比较 ===\n');
 
@@ -184,6 +191,8 @@ fprintf('\n=== 模型构建和比较 ===\n');
 X = [gestational_weeks, BMI_data];  % 自变量矩阵
 Y = Y_chromosome_concentration;      % 因变量
 X_with_intercept = [ones(n,1), X];   % 添加截距项
+
+
 
 %% 模型1: 多元线性回归模型
 fprintf('\n--- 模型1: 多元线性回归模型 ---\n');
@@ -202,6 +211,8 @@ for i = 1:3
             mdl1.Coefficients.Estimate(i), mdl1.Coefficients.tStat(i), mdl1.Coefficients.pValue(i));
 end
 
+
+
 %% 模型2: 仅孕周数的简单线性回归
 fprintf('\n--- 模型2: 简单线性回归 (仅孕周数) ---\n');
 mdl2 = fitlm(gestational_weeks, Y);
@@ -210,12 +221,16 @@ fprintf('模型方程: Y = %.6f + %.6f*GestationalWeeks\n', ...
 fprintf('R² = %.4f, 调整R² = %.4f\n', mdl2.Rsquared.Ordinary, mdl2.Rsquared.Adjusted);
 fprintf('AIC = %.2f, BIC = %.2f\n', mdl2.ModelCriterion.AIC, mdl2.ModelCriterion.BIC);
 
+
+
 %% 模型3: 多项式回归 (孕周数二次项)
 fprintf('\n--- 模型3: 多项式回归模型 ---\n');
 X_poly = [gestational_weeks, BMI_data, gestational_weeks.^2];
 mdl3 = fitlm(X_poly, Y);
 fprintf('R² = %.4f, 调整R² = %.4f\n', mdl3.Rsquared.Ordinary, mdl3.Rsquared.Adjusted);
 fprintf('AIC = %.2f, BIC = %.2f\n', mdl3.ModelCriterion.AIC, mdl3.ModelCriterion.BIC);
+
+
 
 %% 模型4: 对数变换模型
 fprintf('\n--- 模型4: 对数变换模型 ---\n');
@@ -224,12 +239,16 @@ mdl4 = fitlm(X, log_Y);
 fprintf('R² = %.4f, 调整R² = %.4f\n', mdl4.Rsquared.Ordinary, mdl4.Rsquared.Adjusted);
 fprintf('AIC = %.2f, BIC = %.2f\n', mdl4.ModelCriterion.AIC, mdl4.ModelCriterion.BIC);
 
+
+
 %% 模型5: 交互效应模型
 fprintf('\n--- 模型5: 交互效应模型 ---\n');
 X_interact = [gestational_weeks, BMI_data, gestational_weeks.*BMI_data];
 mdl5 = fitlm(X_interact, Y);
 fprintf('R² = %.4f, 调整R² = %.4f\n', mdl5.Rsquared.Ordinary, mdl5.Rsquared.Adjusted);
 fprintf('AIC = %.2f, BIC = %.2f\n', mdl5.ModelCriterion.AIC, mdl5.ModelCriterion.BIC);
+
+
 
 %% 模型比较总结
 fprintf('\n=== 模型比较总结 ===\n');
@@ -246,6 +265,8 @@ fprintf('%-20s %8s %8s %8s\n', '----', '--', '---', '---');
 for i = 1:length(models)
     fprintf('%-20s %8.4f %8.2f %8.2f\n', models{i}, R2_values(i), AIC_values(i), BIC_values(i));
 end
+
+
 
 %% 7. 分段非线性回归模型分析
 fprintf('\n=== 分段非线性回归模型分析 ===\n');
@@ -445,6 +466,8 @@ best_MSE = MSE_segment_interaction;
 fprintf('\n推荐模型: 分段非线性回归模型（含交互项）\n');
 fprintf('理由: 1) 最高的调整R² 2) 考虑了非线性和交互效应 3) 捕捉了数据的复杂关系 4) 生物学意义明确\n');
 
+% ---------------------------------------------------------------- %
+
 %% 模型诊断 (基于分段非线性交互项模型)
 fprintf('\n=== 模型诊断 ===\n');
 
@@ -452,6 +475,8 @@ fprintf('\n=== 模型诊断 ===\n');
 residuals = best_residuals;
 fitted_values = best_fitted;
 standardized_residuals = residuals / sqrt(best_MSE);
+
+% ---------------------------------------------------------------- %
 
 %% 1. 残差正态性检验
 fprintf('\n--- 1. 残差正态性检验 ---\n');
@@ -474,6 +499,8 @@ else
     fprintf('结论: 残差不服从正态分布 (p ≤ 0.05)\n');
 end
 
+% ---------------------------------------------------------------- %
+
 %% 2. 方差齐性检验 (Breusch-Pagan检验)
 fprintf('\n--- 2. 方差齐性检验 ---\n');
 
@@ -491,6 +518,8 @@ if p_bp > 0.05
 else
     fprintf('结论: 存在异方差性 (p ≤ 0.05)\n');
 end
+
+% ---------------------------------------------------------------- %
 
 %% 3. 多重共线性检验
 fprintf('\n--- 3. 多重共线性检验 ---\n');
@@ -525,6 +554,8 @@ else
     fprintf('警告: 存在高度相关的变量 (max|r| ≥ 0.8)\n');
 end
 
+% ---------------------------------------------------------------- %
+
 %% 4. 影响点分析
 fprintf('\n--- 4. 影响点分析 ---\n');
 
@@ -553,6 +584,8 @@ else
     fprintf('\n');
 end
 
+% ---------------------------------------------------------------- %
+
 %% 5. 独立性检验 (Durbin-Watson检验)
 fprintf('\n--- 5. 独立性检验 ---\n');
 
@@ -565,6 +598,8 @@ if dw_stat > 1.5 && dw_stat < 2.5
 else
     fprintf('结论: 可能存在自相关问题\n');
 end
+
+% ---------------------------------------------------------------- %
 
 %% 模型诊断可视化
 figure('Position', [100, 100, 1400, 1000]);
@@ -664,6 +699,8 @@ title('分段效应可视化');
 legend('Location', 'best');
 grid on;
 
+% ---------------------------------------------------------------- %
+
 %% 模型预测和实际应用
 fprintf('\n=== 模型预测和实际应用 ===\n');
 
@@ -704,6 +741,10 @@ for i = 1:length(example_weeks)
                 example_weeks(i), example_bmi(j), pred_val, pred_se);
     end
 end
+
+% ---------------------------------------------------------------- %
+
+% 下面这一段就是偏依赖图的部分
 
 %% 敏感性分析
 fprintf('\n--- 敏感性分析 ---\n');
@@ -769,6 +810,8 @@ title(sprintf('Y染色体浓度随BMI变化 (孕周=%.1f)', fixed_weeks));
 grid on;
 
 sgtitle('分段非线性交互项模型预测可视化', 'FontSize', 14, 'FontWeight', 'bold');
+
+% ---------------------------------------------------------------- %
 
 %% 交叉验证
 fprintf('\n=== 模型交叉验证 ===\n');
