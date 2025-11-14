@@ -11,7 +11,7 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']      # 黑体
 matplotlib.rcParams['axes.unicode_minus'] = False        # 解决负号显示为方块的问题
 
 # ========= 配置（按需修改） =========
-FILE_PATH = r"D:\LearningDeepLearning\2025Modeling\Data_Processing\男胎检测数据_处理后_filtered.xlsx"
+FILE_PATH = r"/Original_Code/Data_Processing\男胎检测数据_处理后_filtered.xlsx"
 SHEET_NAME = 0  # 默认第一个sheet
 
 COL_Y   = "Y染色体浓度"

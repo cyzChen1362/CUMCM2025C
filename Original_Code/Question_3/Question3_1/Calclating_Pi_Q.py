@@ -110,7 +110,7 @@ def ensure_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 # ------------------ 2) 读入与清洗 ------------------
 
-EXCEL_PATH = r"..\Data_Processing\男胎检测数据_处理后_with_flags.xlsx"
+EXCEL_PATH = r"../Data_Processing/男胎检测数据_处理后_with_flags.xlsx"
 assert os.path.exists(EXCEL_PATH), f"找不到文件: {EXCEL_PATH}"
 
 raw = pd.read_excel(EXCEL_PATH)

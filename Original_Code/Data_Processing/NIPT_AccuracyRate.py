@@ -64,6 +64,6 @@ def process_excel(input_file, output_file):
     print(f"处理完成，新文件已保存为: {output_file}")
 
 if __name__ == "__main__":
-    input_path = "附件.xlsx"                   # 输入文件路径
-    output_path = "男胎检测数据_处理后.xlsx"     # 输出文件路径
+    input_path = "附件.xlsx"  # 输入文件路径
+    output_path = "男胎检测数据_处理后.xlsx"  # 输出文件路径
     process_excel(input_path, output_path)

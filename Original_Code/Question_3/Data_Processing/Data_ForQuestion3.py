@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 # ===== 1) 输入文件路径 =====
-INPUT_PATH = r"男胎检测数据_处理后.xlsx"   # ← 改成你的文件路径
+INPUT_PATH = r"男胎检测数据_处理后.xlsx"  # ← 改成你的文件路径
 
 # ===== 2) 读取数据 =====
 input_path = Path(INPUT_PATH)

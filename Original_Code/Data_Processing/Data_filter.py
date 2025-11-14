@@ -16,7 +16,7 @@ def filter_gc_content(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_path = "男胎检测数据_处理后.xlsx"        # 输入文件路径
+    input_path = "男胎检测数据_处理后.xlsx"  # 输入文件路径
     output_path = "男胎检测数据_处理后_filtered.xlsx"  # 输出文件路径
 
     filter_gc_content(input_path, output_path)

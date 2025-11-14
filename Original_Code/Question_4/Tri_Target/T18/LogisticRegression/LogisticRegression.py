@@ -14,8 +14,8 @@ from sklearn.metrics import (
 )
 
 
-FILE_PATH = r"..\balanced_组合采样.xlsx"
-FLOATED_FILE_PATH = r"..\balanced_组合采样_浮动后.xlsx"  # ← 你的“浮动后”数据集
+FILE_PATH = r"../balanced_组合采样.xlsx"
+FLOATED_FILE_PATH = r"../balanced_组合采样_浮动后.xlsx"  # ← 你的“浮动后”数据集
 TARGET_COL = "18号染色体是否正常"
 
 RAW_FEATURES = [

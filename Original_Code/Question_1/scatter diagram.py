@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
 # 读取数据
-file_path = "D:/LearningDeepLearning/2025Modeling/Data_Processing/男胎检测数据_处理后_filtered.xlsx"
+file_path = "/Original_Code/Data_Processing/男胎检测数据_处理后_filtered.xlsx"
 df = pd.read_excel(file_path)
 
 # 计算BMI

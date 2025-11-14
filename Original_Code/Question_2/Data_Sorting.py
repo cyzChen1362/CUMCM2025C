@@ -1,7 +1,7 @@
 import pandas as pd
 
 # 读取表格
-file_path = r"D:\LearningDeepLearning\2025Modeling\Data_Processing\男胎检测数据_处理后_filtered.xlsx"  # 输入文件路径
+file_path = r"/Original_Code/Data_Processing\男胎检测数据_处理后_filtered.xlsx"  # 输入文件路径
 df = pd.read_excel(file_path)
 
 # 拆分“是”和“否”

@@ -13,9 +13,9 @@ from sklearn.metrics import (
     roc_auc_score, roc_curve, classification_report, confusion_matrix
 )
 
-FILE_PATH = r"..\balanced_组合采样.xlsx"
-FLOATED_FILE_PATH = r"..\balanced_组合采样_浮动后.xlsx"
-TARGET_COL = "21号染色体是否正常"
+FILE_PATH = r"../balanced_组合采样.xlsx"
+FLOATED_FILE_PATH = r"../balanced_组合采样_浮动后.xlsx"
+TARGET_COL = "13号染色体是否正常"
 
 RAW_FEATURES = [
     "原始读段数",
@@ -65,10 +65,8 @@ df = strip_columns(df)
 
 if TARGET_COL not in df.columns:
     raise KeyError(f"未找到目标列：{TARGET_COL}")
-
 if "检测孕周" in df.columns:
     df["检测孕周"] = df["检测孕周"].apply(to_weeks)
-
 missing_features = [c for c in RAW_FEATURES if c not in df.columns]
 if missing_features:
     raise KeyError(f"训练集缺失特征列：{missing_features}")
@@ -92,6 +90,7 @@ for c in RAW_FEATURES:
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=y
 )
+
 
 pipe = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
@@ -224,7 +223,6 @@ df_f = strip_columns(df_f)
 
 if TARGET_COL not in df_f.columns:
     raise KeyError(f"浮动后数据集未找到目标列：{TARGET_COL}")
-
 if "检测孕周" in df_f.columns:
     df_f["检测孕周"] = df_f["检测孕周"].apply(to_weeks)
 
@@ -269,7 +267,6 @@ print("\nConfusion Matrix [[TN, FP], [FN, TP]]:\n", cm_f)
 print("\nClassification Report (floated):")
 print(classification_report(y_f, y_f_pred, digits=4))
 
-# 保存浮动集预测明细
 out_f = df_f_use.copy()
 out_f["pred_prob"]  = y_f_prob
 out_f["pred_label"] = y_f_pred

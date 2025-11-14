@@ -13,13 +13,16 @@ from sklearn.metrics import (
     roc_auc_score, roc_curve, classification_report, confusion_matrix
 )
 
-FILE_PATH = r"..\balanced_组合采样.xlsx"
-FLOATED_FILE_PATH = r"..\balanced_组合采样_浮动后.xlsx"
-TARGET_COL = "13号染色体是否正常"
+# ----------------------------
+# 0) Config
+# ----------------------------
+FILE_PATH = r"../balanced_组合采样.xlsx"
+FLOATED_FILE_PATH = r"../balanced_组合采样_浮动后.xlsx"
 
+TARGET_COL = "染色体是否正常"
 RAW_FEATURES = [
-    "原始读段数",
     "检测抽血次数",
+    "原始读段数",
     "X染色体的Z值",
     "18号染色体的Z值",
     "13号染色体的Z值",
@@ -27,7 +30,6 @@ RAW_FEATURES = [
     "X染色体浓度",
     "21号染色体的Z值",
 ]
-
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
 
@@ -65,11 +67,13 @@ df = strip_columns(df)
 
 if TARGET_COL not in df.columns:
     raise KeyError(f"未找到目标列：{TARGET_COL}")
+
 if "检测孕周" in df.columns:
     df["检测孕周"] = df["检测孕周"].apply(to_weeks)
+
 missing_features = [c for c in RAW_FEATURES if c not in df.columns]
 if missing_features:
-    raise KeyError(f"训练集缺失特征列：{missing_features}")
+    raise KeyError(f"以下特征列缺失（训练集）：{missing_features}")
 
 use_cols = [TARGET_COL] + RAW_FEATURES
 df_use = df[use_cols].copy()
@@ -78,7 +82,7 @@ y_map = {"是": 1, "否": 0, 1: 1, 0: 0}
 y = df_use[TARGET_COL].map(y_map)
 if y.isna().any():
     bad_rows = df_use[y.isna()]
-    print("警告：训练集中存在无法映射为二元标签的行，这些行将被丢弃。示例：")
+    print("警告：发现无法映射为二元标签的行（训练集），这些行将被丢弃。示例：")
     print(bad_rows.head())
     df_use = df_use[~y.isna()].copy()
     y = df_use[TARGET_COL].map(y_map)
@@ -90,7 +94,6 @@ for c in RAW_FEATURES:
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=y
 )
-
 
 pipe = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
@@ -123,7 +126,7 @@ f1 = f1_score(y_test, y_pred, zero_division=0)
 auc = roc_auc_score(y_test, y_prob)
 cm = confusion_matrix(y_test, y_pred)
 
-print("\n=== Test Metrics ===")
+print("\n=== Test Metrics (hold-out) ===")
 print(f"Accuracy   : {acc:.4f}")
 print(f"Precision  : {prec:.4f}")
 print(f"Recall     : {rec:.4f}")
@@ -196,7 +199,7 @@ print("参数表已保存为: logreg_params.csv")
 
 latex_lines = []
 latex_lines.append(r"\[")
-latex_lines.append(r"\operatorname{logit}\,P(y=1\mid x) = " + f"{b_raw:+.6f} ")
+latex_lines.append(r"\operatorname{logit}\,P(y=1\mid x) = " + f"{b_raw:+.6f} " + r"")
 for i, (f, br) in enumerate(zip(RAW_FEATURES, beta_raw)):
     sign = "+" if br >= 0 else "-"
     val  = abs(br)
@@ -211,10 +214,10 @@ print("LaTeX 公式已保存为: logreg_formula_latex.txt")
 all_probs = best_model.predict_proba(X)[:, 1]
 all_pred  = (all_probs >= 0.5).astype(int)
 
-out = df_use.copy()
-out["pred_prob"]  = all_probs
-out["pred_label"] = all_pred
-out.to_csv("predictions_logreg.csv", index=False, encoding="utf-8-sig")
+out_orig = df_use.copy()
+out_orig["pred_prob"]  = all_probs
+out_orig["pred_label"] = all_pred
+out_orig.to_csv("predictions_logreg.csv", index=False, encoding="utf-8-sig")
 print("完整样本预测已保存为: predictions_logreg.csv")
 
 print("\n=== Evaluating on FLOATED dataset ===")
@@ -223,6 +226,7 @@ df_f = strip_columns(df_f)
 
 if TARGET_COL not in df_f.columns:
     raise KeyError(f"浮动后数据集未找到目标列：{TARGET_COL}")
+
 if "检测孕周" in df_f.columns:
     df_f["检测孕周"] = df_f["检测孕周"].apply(to_weeks)
 
@@ -232,13 +236,13 @@ if missing_f:
 
 df_f_use = df_f[[TARGET_COL] + RAW_FEATURES].copy()
 
-y_f = df_f_use[TARGET_COL].map({"是":1, "否":0, 1:1, 0:0})
+y_f = df_f_use[TARGET_COL].map(y_map)
 if y_f.isna().any():
     bad_rows_f = df_f_use[y_f.isna()]
-    print("警告：浮动集中存在无法映射为二元标签的行，这些行将被丢弃。示例：")
+    print("警告：发现无法映射为二元标签的行（浮动集），这些行将被丢弃。示例：")
     print(bad_rows_f.head())
     df_f_use = df_f_use[~y_f.isna()].copy()
-    y_f = df_f_use[TARGET_COL].map({"是":1, "否":0, 1:1, 0:0})
+    y_f = df_f_use[TARGET_COL].map(y_map)
 
 X_f = df_f_use[RAW_FEATURES].copy()
 for c in RAW_FEATURES:
@@ -247,10 +251,10 @@ for c in RAW_FEATURES:
 y_f_prob = best_model.predict_proba(X_f)[:, 1]
 y_f_pred = (y_f_prob >= 0.5).astype(int)
 
-acc_f  = accuracy_score(y_f, y_f_pred)
+acc_f = accuracy_score(y_f, y_f_pred)
 prec_f = precision_score(y_f, y_f_pred, zero_division=0)
-rec_f  = recall_score(y_f, y_f_pred, zero_division=0)
-f1_f   = f1_score(y_f, y_f_pred, zero_division=0)
+rec_f = recall_score(y_f, y_f_pred, zero_division=0)
+f1_f = f1_score(y_f, y_f_pred, zero_division=0)
 try:
     auc_f = roc_auc_score(y_f, y_f_prob)
 except ValueError:
@@ -267,6 +271,7 @@ print("\nConfusion Matrix [[TN, FP], [FN, TP]]:\n", cm_f)
 print("\nClassification Report (floated):")
 print(classification_report(y_f, y_f_pred, digits=4))
 
+# 保存浮动集预测
 out_f = df_f_use.copy()
 out_f["pred_prob"]  = y_f_prob
 out_f["pred_label"] = y_f_pred
