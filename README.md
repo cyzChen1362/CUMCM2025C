@@ -10,59 +10,35 @@
 
 ---
 
-## 🧭 Project Structure
-
-```
-2025Modeling/  
-├─ Original_Code/  
-│   ├─ Code_FromMATLAB/  
-│   ├─ Data_Processing/  
-│   ├─ Question_1/  
-│   ├─ Question_2/  
-│   ├─ Question_3/  
-│   └─ Question_4/  
-├─ NoteBook/   
-│   ├─ Data_Preprocessing/  
-│   ├─ Question_1/  
-│   ├─ Question_2/  
-│   ├─ Question_3/  
-│   └─ Question_4/  
-│  
-├─ requirements.txt  
-└─ README.md  
-```
-
----
-
 ## 📘 Notebook-Based Usage Guide
 
 本仓库主要通过 Notebook 展示建模全过程，阅读路线如下：
 
 ### **1）数据预处理与分析（施工中）**
 
-路径：`NoteBook/Data_Preprocessing/Data_Preprocessing.ipynb`  
-当前进度：完成孕周单位转换、缺失值处理；  
-施工中：异常值处理、数据清洗、女胎数据工程、数据初探。
+### 路径：`NoteBook/Data_Preprocessing/Data_Preprocessing.ipynb`  
+当前进度：完成孕周单位转换、缺失值处理、异常值处理、数据清洗；  
+施工中：女胎数据工程、数据初探。
 
-### **2）问题一（挖坑中）**
+### **2）问题一（挖坑中）**  
 
+### 路径：`NoteBook/Question_1/`（待填）
 研究 **Y 染色体浓度 ~ 孕周 + BMI** 的分段非线性交互模型；  
-Notebook：`NoteBook/Question_1/`（待填）
 
-### **3）问题二（挖坑中）**
+### **3）问题二（挖坑中）**  
 
+### 路径：`NoteBook/Question_2/`（待填）
 基于 Monte Carlo + 风险函数，构建 **BMI 分层的最佳检测时点模型**；  
-Notebook：`NoteBook/Question_2/`（待填）
 
-### **4）问题三（挖坑中）**
+### **4）问题三（挖坑中）**  
 
+### 路径：`NoteBook/Question_3/`（待填）
 π(w,x) + q(w,gc) 融合的综合风险 R(w|x) 建模；  
-Notebook：`NoteBook/Question_3/`（待填）
 
-### **5）问题四（挖坑中）**
+### **5）问题四（挖坑中）**  
 
+### 路径：`NoteBook/Question_4/`（待填）
 女胎异常判定（VIF、采样策略、逻辑回归、ROC/AUC）；  
-Notebook：`NoteBook/Question_4/`（待填）
 
 ---
 
@@ -102,6 +78,30 @@ Notebook：`NoteBook/Question_4/`（待填）
 * **问题二**：Monte Carlo + 风险函数，得到 **BMI 动态分组**与各组 **最佳检测时点**；
 * **问题三**：π(w,x)（逻辑回归）与 q(w,gc)（分箱 + 核平滑）融合的综合风险 R(w|x)；
 * **问题四**：女胎异常判定（VIF 特征筛选 + 组合采样 + 逻辑回归，ROC/AUC）。
+
+---
+
+## 🧭 Project Structure
+
+```
+2025Modeling/  
+├─ Original_Code/  
+│   ├─ Code_FromMATLAB/  
+│   ├─ Data_Processing/  
+│   ├─ Question_1/  
+│   ├─ Question_2/  
+│   ├─ Question_3/  
+│   └─ Question_4/  
+├─ NoteBook/   
+│   ├─ Data_Preprocessing/  
+│   ├─ Question_1/  
+│   ├─ Question_2/  
+│   ├─ Question_3/  
+│   └─ Question_4/  
+│  
+├─ requirements.txt  
+└─ README.md  
+```
 
 ---
 
