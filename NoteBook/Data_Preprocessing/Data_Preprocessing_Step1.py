@@ -1,7 +1,3 @@
-# =================================================
-# Conversion of gestational weeks units
-# =================================================
-
 import pandas as pd
 import re
 
