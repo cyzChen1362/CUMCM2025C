@@ -48,7 +48,7 @@
 
 <p style="margin:0; font-weight:600;">独立负责：</p>
 <ul style="margin-top:4px;">
-  <li><strong>问题一</strong>的所有内容，包括数学建模、代码实现、实验与论文写作；</li>
+  <li><strong>问题一</strong>的数学建模、代码实现、实验与论文写作；</li>
 </ul>
 
 <p style="margin:0; font-weight:600;">合作完成：</p>
@@ -63,8 +63,8 @@
 
 <p style="margin:0; font-weight:600;">独立负责：</p>
 <ul style="margin-top:4px;">
-  <li> <strong>问题三</strong> 的数学建模；</li>
-  <li> <strong>问题三、问题四</strong> 的代码实现与实验；</li>
+  <li> <strong>问题三</strong> 的数学建模、代码实现与实验；</li>
+  <li> <strong>问题四</strong> 的代码实现与实验；</li>
 </ul>
 
 <p style="margin:0; font-weight:600;">合作完成：</p>
