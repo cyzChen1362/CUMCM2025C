@@ -46,41 +46,49 @@
 
 ### **🟦 Simon-Tisa（建模手、编程手、论文手）**
 
-**独立负责：**
-* 全面负责 **问题一** 的数学建模、代码实现、实验与论文写作；  
+<p style="margin:0; font-weight:600;">独立负责：</p>
+<ul style="margin-top:4px;">
+  <li><strong>问题一</strong>的所有内容，包括数学建模、代码实现、实验与论文写作；</li>
+</ul>
 
-**合作完成：**
-* 与 CYZ Chan 共同完成 **问题二、问题四** 的数学建模；
-* 与 CYZ Chan 共同完成 **问题二** 的代码实现与实验；
-
-**其他贡献：**
-* 提供部分论文插图；
-* 参与论文的整体完善与结果呈现。
+<p style="margin:0; font-weight:600;">合作完成：</p>
+<ul style="margin-top:4px;">
+  <li>与 CYZ Chan 共同完成<strong>问题二、问题四</strong>的数学建模；</li>
+  <li>与 CYZ Chan 共同完成<strong>问题二</strong>的代码实现与实验；</li>
+  <li>提供部分论文插图；</li>
+  <li>参与论文的整体完善与结果呈现；</li>
+</ul>
 
 ### **🟩 CYZ Chan（编程手、建模手）**
 
-**独立负责：**
-* 全面负责 **问题三** 的数学建模
-* 负责 **问题三、问题四** 的代码实现与实验；
+<p style="margin:0; font-weight:600;">独立负责：</p>
+<ul style="margin-top:4px;">
+  <li> <strong>问题三</strong> 的数学建模；</li>
+  <li> <strong>问题三、问题四</strong> 的代码实现与实验；</li>
+</ul>
 
-**合作完成：**
-* 与 Simon-Tisa 共同完成 **问题二、问题四** 的数学建模；
-* 与 Simon-Tisa 共同完成 **问题二** 的代码实现与实验；
+<p style="margin:0; font-weight:600;">合作完成：</p>
+<ul style="margin-top:4px;">
+  <li>与 Simon-Tisa 共同完成 <strong>问题二、问题四</strong> 的数学建模；</li>
+  <li>与 Simon-Tisa 共同完成 <strong>问题二</strong> 的代码实现与实验；</li>
 
-**其他贡献：**
-* 提供部分论文插图；
-* 参与论文后期实验结果的修订与完善。
+  <li>提供部分论文插图；</li>
+  <li>参与论文后期实验结果的修订与完善；</li>
+</ul>
+
 
 ### **🟧 Lsuuu_econ（论文手）**
 
-**独立负责：**
-* 完全承担 **问题二、问题三、问题四** 的论文写作；
+<p style="margin:0; font-weight:600;">独立负责：</p>
+<ul style="margin-top:4px;">
+  <li> <strong>问题二、问题三、问题四</strong> 的论文写作；</li>
+</ul>
 
-**合作完成：**
-* 提供部分论文插图；
-
-**其他贡献：**
-* 参与论文后期的润色整理与展示。
+<p style="margin:0; font-weight:600;">合作完成：</p>
+<ul style="margin-top:4px;">
+  <li>提供部分论文插图；</li>
+  <li>参与论文后期的润色整理与展示；</li>
+</ul>
 
 > ⚙️ 本工程由 **CYZ Chan** 建立并持续维护。
 
