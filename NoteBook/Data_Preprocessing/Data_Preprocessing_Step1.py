@@ -1,6 +1,10 @@
 import pandas as pd
 import re
 
+import os
+print("Current working directory:", os.getcwd())
+print("File exists?:", os.path.exists("../Data/附件.xlsx"))
+
 def convert_gestational_age(value):
     """
     将检测孕周转换为小数
