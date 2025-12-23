@@ -81,7 +81,9 @@
 
 <p style="margin:0; font-weight:600;">独立负责：</p>
 <ul style="margin-top:4px;">
-  <li> <strong>问题二、问题三、问题四</strong> 的论文写作；</li>
+  <li> <strong>问题二</strong> 的论文写作；</li>
+  <li> <strong>问题三</strong> 的论文写作；</li>
+  <li> <strong>问题四</strong> 的论文写作；</li>
 </ul>
 
 <p style="margin:0; font-weight:600;">合作完成：</p>
